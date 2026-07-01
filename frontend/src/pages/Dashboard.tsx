@@ -11,12 +11,14 @@ import {
   PieChart, Pie, Cell, Legend
 } from 'recharts';
 import { kpiApi, KPISummary } from '../api/client';
+import { useLang } from '../context/LanguageContext';
 
 const COLORS = ['#1a237e', '#ff6f00', '#4caf50', '#f44336', '#9c27b0', '#2196f3', '#ff9800', '#795548'];
 
 export default function Dashboard() {
   const [kpi, setKpi] = useState<KPISummary | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t } = useLang();
 
   useEffect(() => {
     kpiApi.summary().then(res => setKpi(res.data)).finally(() => setLoading(false));
@@ -26,7 +28,7 @@ export default function Dashboard() {
 
   return (
     <Box>
-      <Typography variant="h5" fontWeight={700} mb={3}>لوحة مؤشرات الأداء الرئيسية</Typography>
+      <Typography variant="h5" fontWeight={700} mb={3}>{t('dashboard.title')}</Typography>
 
       <Grid container spacing={3} mb={4}>
         <Grid item xs={12} sm={6} md={3}>
@@ -34,7 +36,7 @@ export default function Dashboard() {
             <CardContent>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box>
-                  <Typography color="textSecondary" variant="caption">إجمالي الحوادث</Typography>
+                  <Typography color="textSecondary" variant="caption">{t('dashboard.totalIncidents')}</Typography>
                   <Typography variant="h4" fontWeight={700}>{kpi?.total_incidents || 0}</Typography>
                 </Box>
                 <WarningAmberIcon sx={{ fontSize: 40, color: '#1a237e', opacity: 0.3 }} />
@@ -47,7 +49,7 @@ export default function Dashboard() {
             <CardContent>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box>
-                  <Typography color="textSecondary" variant="caption">حوادث مفتوحة</Typography>
+                  <Typography color="textSecondary" variant="caption">{t('dashboard.openIncidents')}</Typography>
                   <Typography variant="h4" fontWeight={700}>{kpi?.open_incidents || 0}</Typography>
                 </Box>
                 <ErrorIcon sx={{ fontSize: 40, color: '#ff6f00', opacity: 0.3 }} />
@@ -60,7 +62,7 @@ export default function Dashboard() {
             <CardContent>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box>
-                  <Typography color="textSecondary" variant="caption">حوادث مغلقة</Typography>
+                  <Typography color="textSecondary" variant="caption">{t('dashboard.closedIncidents')}</Typography>
                   <Typography variant="h4" fontWeight={700}>{kpi?.closed_incidents || 0}</Typography>
                 </Box>
                 <CheckCircleIcon sx={{ fontSize: 40, color: '#4caf50', opacity: 0.3 }} />
@@ -73,7 +75,7 @@ export default function Dashboard() {
             <CardContent>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box>
-                  <Typography color="textSecondary" variant="caption">إصابات / وفيات</Typography>
+                  <Typography color="textSecondary" variant="caption">{t('dashboard.injuriesFatalities')}</Typography>
                   <Typography variant="h4" fontWeight={700}>{kpi?.total_injuries || 0} / {kpi?.total_fatalities || 0}</Typography>
                 </Box>
                 <AirlineStopsIcon sx={{ fontSize: 40, color: '#f44336', opacity: 0.3 }} />
@@ -87,25 +89,25 @@ export default function Dashboard() {
         <Grid item xs={12} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6" mb={2}>متوسط أوقات الاستجابة (دقائق)</Typography>
+              <Typography variant="h6" mb={2}>{t('dashboard.avgResponseTimes')}</Typography>
               <Box sx={{ display: 'flex', justifyContent: 'space-around', textAlign: 'center' }}>
                 <Box>
                   <Typography variant="h4" color="primary" fontWeight={700}>
                     {kpi?.avg_response_time?.toFixed(1) || '-'}
                   </Typography>
-                  <Typography variant="caption" color="textSecondary">الاستجابة</Typography>
+                  <Typography variant="caption" color="textSecondary">{t('dashboard.response')}</Typography>
                 </Box>
                 <Box>
                   <Typography variant="h4" color="secondary" fontWeight={700}>
                     {kpi?.avg_evacuation_time?.toFixed(1) || '-'}
                   </Typography>
-                  <Typography variant="caption" color="textSecondary">الإخلاء</Typography>
+                  <Typography variant="caption" color="textSecondary">{t('dashboard.evacuation')}</Typography>
                 </Box>
                 <Box>
                   <Typography variant="h4" color="error" fontWeight={700}>
                     {kpi?.avg_rescue_time?.toFixed(1) || '-'}
                   </Typography>
-                  <Typography variant="caption" color="textSecondary">الإنقاذ</Typography>
+                  <Typography variant="caption" color="textSecondary">{t('dashboard.rescue')}</Typography>
                 </Box>
               </Box>
             </CardContent>
@@ -114,7 +116,7 @@ export default function Dashboard() {
         <Grid item xs={12} md={8}>
           <Card>
             <CardContent>
-              <Typography variant="h6" mb={2}>الحوادث حسب المحطة</Typography>
+              <Typography variant="h6" mb={2}>{t('dashboard.byStation')}</Typography>
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={kpi?.incidents_by_station || []}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -133,7 +135,7 @@ export default function Dashboard() {
         <Grid item xs={12} md={6}>
           <Card>
             <CardContent>
-              <Typography variant="h6" mb={2}>الحوادث حسب النوع</Typography>
+              <Typography variant="h6" mb={2}>{t('dashboard.byType')}</Typography>
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
                   <Pie
@@ -158,7 +160,7 @@ export default function Dashboard() {
         <Grid item xs={12} md={6}>
           <Card>
             <CardContent>
-              <Typography variant="h6" mb={2}>الاتجاه الشهري</Typography>
+              <Typography variant="h6" mb={2}>{t('dashboard.monthlyTrend')}</Typography>
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={kpi?.monthly_trend || []}>
                   <CartesianGrid strokeDasharray="3 3" />

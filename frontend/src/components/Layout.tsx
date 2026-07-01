@@ -9,26 +9,29 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import SubwayIcon from '@mui/icons-material/DirectionsSubway';
+import TranslateIcon from '@mui/icons-material/Translate';
+import { useLang } from '../context/LanguageContext';
 
 const DRAWER_WIDTH = 240;
-
-const menuItems = [
-  { label: 'لوحة المؤشرات', icon: <DashboardIcon />, path: '/' },
-  { label: 'جميع الحوادث', icon: <WarningAmberIcon />, path: '/incidents' },
-  { label: 'حادث جديد', icon: <AddCircleIcon />, path: '/incidents/new' },
-];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t, toggleLang, lang } = useLang();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const menuItems = [
+    { label: t('nav.dashboard'), icon: <DashboardIcon />, path: '/' },
+    { label: t('nav.incidents'), icon: <WarningAmberIcon />, path: '/incidents' },
+    { label: t('nav.newIncident'), icon: <AddCircleIcon />, path: '/incidents/new' },
+  ];
 
   const drawer = (
     <Box>
       <Box sx={{ p: 2, textAlign: 'center' }}>
         <SubwayIcon sx={{ fontSize: 40, color: 'primary.main' }} />
         <Typography variant="subtitle2" fontWeight={600} sx={{ mt: 1 }}>
-          نظام المترو الذكي
+          {t('app.shortTitle')}
         </Typography>
       </Box>
       <Divider />
@@ -56,9 +59,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <MenuIcon />
           </IconButton>
           <SubwayIcon sx={{ ml: 1 }} />
-          <Typography variant="h6" noWrap>
-            نظام إدارة عمليات محطات المترو الذكي
+          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
+            {t('app.title')}
           </Typography>
+          <IconButton color="inherit" onClick={toggleLang}>
+            <TranslateIcon />
+            <Typography variant="caption" sx={{ ml: 0.5 }}>
+              {lang === 'ar' ? 'English' : 'العربية'}
+            </Typography>
+          </IconButton>
         </Toolbar>
       </AppBar>
 

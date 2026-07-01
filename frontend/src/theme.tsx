@@ -5,42 +5,51 @@ import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CssBaseline } from '@mui/material';
+import { useLang } from './context/LanguageContext';
 
-const rtlCache = createCache({
-  key: 'muirtl',
-  stylisPlugins: [prefixer, rtlPlugin],
-});
-
-const theme = createTheme({
-  direction: 'rtl',
-  palette: {
-    primary: { main: '#1a237e' },
-    secondary: { main: '#ff6f00' },
-    background: { default: '#f5f5f5' },
-  },
-  typography: {
-    fontFamily: '"Cairo", "Roboto", "Arial", sans-serif',
-  },
-  components: {
-    MuiTextField: {
-      defaultProps: { variant: 'outlined', size: 'small', fullWidth: true },
-    },
-    MuiButton: {
-      defaultProps: { size: 'small' },
-    },
-    MuiCard: {
-      defaultProps: { elevation: 1 },
-    },
-  },
-});
+function RTLProvider({ children, dir }: { children: React.ReactNode; dir: 'rtl' | 'ltr' }) {
+  if (dir === 'ltr') return <>{children}</>;
+  const cache = createCache({
+    key: 'muirtl',
+    stylisPlugins: [prefixer, rtlPlugin],
+  });
+  return <CacheProvider value={cache}>{children}</CacheProvider>;
+}
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const { dir, lang } = useLang();
+
+  const theme = createTheme({
+    direction: dir,
+    palette: {
+      primary: { main: '#1a237e' },
+      secondary: { main: '#ff6f00' },
+      background: { default: '#f5f5f5' },
+    },
+    typography: {
+      fontFamily: lang === 'ar'
+        ? '"Cairo", "Roboto", "Arial", sans-serif'
+        : '"Inter", "Roboto", "Arial", sans-serif',
+    },
+    components: {
+      MuiTextField: {
+        defaultProps: { variant: 'outlined', size: 'small', fullWidth: true },
+      },
+      MuiButton: {
+        defaultProps: { size: 'small' },
+      },
+      MuiCard: {
+        defaultProps: { elevation: 1 },
+      },
+    },
+  });
+
   return (
-    <CacheProvider value={rtlCache}>
+    <RTLProvider dir={dir}>
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         {children}
       </MuiThemeProvider>
-    </CacheProvider>
+    </RTLProvider>
   );
 }
