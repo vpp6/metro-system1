@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: metro-system
+    runtime: python
+    region: frankfurt
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd backend && gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
