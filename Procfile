@@ -1,1 +1,1 @@
-web: cd backend && gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app
+web: cd backend && gunicorn -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:$PORT app.main:app
