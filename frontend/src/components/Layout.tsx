@@ -116,7 +116,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             sx={{ mr: 2, display: { md: 'none' }, bgcolor: 'rgba(255,255,255,0.1)', '&:hover': { bgcolor: 'rgba(255,255,255,0.2)' } }}>
             <MenuIcon />
           </IconButton>
-          <SubwayIcon sx={{ ml: lang === 'ar' ? 0 : 1, mr: lang === 'ar' ? 1 : 0, fontSize: 28 }} />
+          <SubwayIcon sx={{ mr: 1, fontSize: 28 }} />
           <Typography variant="h6" noWrap sx={{ flexGrow: 1, fontWeight: 700, letterSpacing: '0.02em' }}>
             {t('app.title')}
           </Typography>
