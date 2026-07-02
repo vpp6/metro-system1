@@ -9,7 +9,6 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import SubwayIcon from '@mui/icons-material/DirectionsSubway';
-import TranslateIcon from '@mui/icons-material/Translate';
 import { useLang } from '../context/LanguageContext';
 
 const DRAWER_WIDTH = 260;
@@ -17,7 +16,7 @@ const DRAWER_WIDTH = 260;
 export default function Layout({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const { t, toggleLang, lang } = useLang();
+  const { t } = useLang();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const menuItems = [
@@ -121,15 +120,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Typography variant="h6" noWrap sx={{ flexGrow: 1, fontWeight: 700, letterSpacing: '0.02em' }}>
             {t('app.title')}
           </Typography>
-          <IconButton color="inherit" onClick={toggleLang} sx={{
-            bgcolor: 'rgba(255,255,255,0.1)', borderRadius: 2, px: 1.5,
-            '&:hover': { bgcolor: 'rgba(255,255,255,0.2)' },
-          }}>
-            <TranslateIcon sx={{ fontSize: 20 }} />
-            <Typography variant="caption" sx={{ ml: 0.5, fontWeight: 600 }}>
-              {lang === 'ar' ? 'EN' : 'AR'}
-            </Typography>
-          </IconButton>
+
         </Toolbar>
       </AppBar>
 

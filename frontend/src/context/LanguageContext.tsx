@@ -1,40 +1,23 @@
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import { Lang, translations, TranslationKey } from './translations';
+import React, { createContext, useContext } from 'react';
+import { translations, TranslationKey } from './translations';
 
 interface LanguageContextType {
-  lang: Lang;
-  toggleLang: () => void;
+  lang: 'en';
   t: (key: TranslationKey) => string;
-  dir: 'rtl' | 'ltr';
+  dir: 'ltr';
 }
 
 const LanguageContext = createContext<LanguageContextType>({
-  lang: 'ar',
-  toggleLang: () => {},
+  lang: 'en',
   t: () => '',
-  dir: 'rtl',
+  dir: 'ltr',
 });
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Lang>('ar');
-
-  const toggleLang = useCallback(() => {
-    setLang(prev => prev === 'ar' ? 'en' : 'ar');
-  }, []);
-
-  const t = useCallback((key: TranslationKey): string => {
-    return translations[key]?.[lang] ?? key;
-  }, [lang]);
-
-  const dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-  useEffect(() => {
-    document.documentElement.dir = dir;
-    document.documentElement.lang = lang;
-  }, [dir, lang]);
+  const t = (key: TranslationKey): string => translations[key]?.en ?? key;
 
   return (
-    <LanguageContext.Provider value={{ lang, toggleLang, t, dir }}>
+    <LanguageContext.Provider value={{ lang: 'en', t, dir: 'ltr' }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -60,14 +43,13 @@ function parseSafeTime(timeStr?: string | null): { h: number; m: number } | null
   return { h, m };
 }
 
-export function formatLangDate(dateStr: string | null | undefined, lang: Lang): string {
+export function formatLangDate(dateStr: string | null | undefined): string {
   const d = parseSafeDate(dateStr);
-  if (!d || lang !== 'en') return dateStr || '-';
+  if (!d) return dateStr || '-';
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-export function formatLangTime(timeStr: string | null | undefined, lang: Lang): string {
-  if (lang !== 'en') return timeStr || '-';
+export function formatLangTime(timeStr: string | null | undefined): string {
   const t = parseSafeTime(timeStr);
   if (!t) return timeStr || '-';
   const ampm = t.h >= 12 ? 'PM' : 'AM';

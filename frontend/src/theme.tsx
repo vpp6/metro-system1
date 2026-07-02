@@ -1,22 +1,9 @@
 import React from 'react';
 import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-import { prefixer } from 'stylis';
-import rtlPlugin from 'stylis-plugin-rtl';
 import { CssBaseline } from '@mui/material';
-import { useLang } from './context/LanguageContext';
 
-function RTLProvider({ children, dir }: { children: React.ReactNode; dir: 'rtl' | 'ltr' }) {
-  if (dir === 'ltr') return <>{children}</>;
-  const cache = createCache({
-    key: 'muirtl',
-    stylisPlugins: [prefixer, rtlPlugin],
-  });
-  return <CacheProvider value={cache}>{children}</CacheProvider>;
-}
-
-const commonTheme = {
+const theme = createTheme({
+  direction: 'ltr',
   shape: { borderRadius: 12 },
   palette: {
     primary: { main: '#0f2b5e', light: '#1a3f7a', dark: '#091a3a' },
@@ -27,6 +14,7 @@ const commonTheme = {
     error: { main: '#ef4444' },
   },
   typography: {
+    fontFamily: '"Inter", "Roboto", "Arial", sans-serif',
     h4: { fontWeight: 800, letterSpacing: '-0.02em' },
     h5: { fontWeight: 700, letterSpacing: '-0.01em' },
     h6: { fontWeight: 600 },
@@ -124,28 +112,13 @@ const commonTheme = {
       },
     },
   },
-};
+});
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const { dir, lang } = useLang();
-
-  const theme = createTheme({
-    ...commonTheme,
-    direction: dir,
-    typography: {
-      ...commonTheme.typography,
-      fontFamily: lang === 'ar'
-        ? '"Cairo", "Roboto", "Arial", sans-serif'
-        : '"Inter", "Roboto", "Arial", sans-serif',
-    },
-  });
-
   return (
-    <RTLProvider dir={dir}>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </MuiThemeProvider>
-    </RTLProvider>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </MuiThemeProvider>
   );
 }

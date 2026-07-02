@@ -27,7 +27,7 @@ const shiftChip = (shift?: string) => {
 
 export default function IncidentList() {
   const navigate = useNavigate();
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
@@ -110,10 +110,10 @@ export default function IncidentList() {
               onChange={e => setFilterStation(e.target.value)}
               SelectProps={{ displayEmpty: true }}>
               {stationList.map((s, i) => (
-                <MenuItem key={s.en + i} value={s[lang]}>
+                <MenuItem key={s.en + i} value={s.en}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                     <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: s.en ? ((s as any).line === 'red' ? '#ef4444' : '#0f2b5e') : 'transparent', flexShrink: 0 }} />
-                    <Typography variant="body2">{s[lang] || t('incidents.all')}</Typography>
+                    <Typography variant="body2">{s.en || t('incidents.all')}</Typography>
                   </Box>
                 </MenuItem>
               ))}
@@ -127,8 +127,8 @@ export default function IncidentList() {
               onChange={e => setFilterShift(e.target.value)}
               SelectProps={{ displayEmpty: true }}>
               {shiftList.map((s, i) => (
-                <MenuItem key={s.en + i} value={s[lang]}>
-                  <Typography variant="body2">{s[lang] || t('incidents.all')}</Typography>
+                <MenuItem key={s.en + i} value={s.en}>
+                  <Typography variant="body2">{s.en || t('incidents.all')}</Typography>
                 </MenuItem>
               ))}
             </TextField>
@@ -169,9 +169,9 @@ export default function IncidentList() {
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body2">{formatLangDate(inc.date, lang)}</Typography>
+                    <Typography variant="body2">{formatLangDate(inc.date)}</Typography>
                   </TableCell>
-                  <TableCell>{formatLangTime(inc.time, lang)}</TableCell>
+                  <TableCell>{formatLangTime(inc.time)}</TableCell>
                   <TableCell>
                     <Chip
                       label={shiftChip(inc.shift).label}

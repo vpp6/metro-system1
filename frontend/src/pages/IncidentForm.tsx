@@ -55,7 +55,7 @@ const emptyForm: IncidentCreate = {
 export default function IncidentForm() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const isEdit = Boolean(id);
   const [form, setForm] = useState<IncidentCreate>(emptyForm);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
@@ -200,10 +200,10 @@ export default function IncidentForm() {
                   </Typography>
                   <TextField select value={form.station || ''} onChange={e => update('station', e.target.value)}>
                     {stations.map((s, i) => (
-                      <MenuItem key={s.en + i} value={s[lang]}>
+                      <MenuItem key={s.en + i} value={s.en}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                           <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: (s as any).line === 'red' ? '#ef4444' : '#0f2b5e', flexShrink: 0 }} />
-                          <Typography variant="body2">{s[lang]}</Typography>
+                          <Typography variant="body2">{s.en}</Typography>
                         </Box>
                       </MenuItem>
                     ))}
@@ -214,7 +214,7 @@ export default function IncidentForm() {
                     {t('form.shift')}
                   </Typography>
                   <TextField select value={form.shift || ''} onChange={e => update('shift', e.target.value)}>
-                    {shifts.map(s => <MenuItem key={s.en} value={s[lang]}>{s[lang]}</MenuItem>)}
+                    {shifts.map(s => <MenuItem key={s.en} value={s.en}>{s.en}</MenuItem>)}
                   </TextField>
                 </Grid>
                 <Grid item xs={12} sm={3}>
@@ -230,7 +230,7 @@ export default function IncidentForm() {
                 </Grid>
                 <Grid item xs={12} sm={4}>
                   <TextField select label={t('form.location')} value={form.location || ''} onChange={e => update('location', e.target.value)}>
-                    {locations.map(l => <MenuItem key={l.en} value={l[lang]}>{l[lang]}</MenuItem>)}
+                    {locations.map(l => <MenuItem key={l.en} value={l.en}>{l.en}</MenuItem>)}
                   </TextField>
                 </Grid>
                 <Grid item xs={12} sm={4}>
@@ -258,7 +258,7 @@ export default function IncidentForm() {
                 <Grid item xs={12} sm={4}>
                   <TextField select label={t('form.discoveredBy')} value={form.detection?.discovered_by || ''}
                     onChange={e => update('detection', { ...form.detection, discovered_by: e.target.value })}>
-                    {discoverers.map(d => <MenuItem key={d.en} value={d[lang]}>{d[lang]}</MenuItem>)}
+                    {discoverers.map(d => <MenuItem key={d.en} value={d.en}>{d.en}</MenuItem>)}
                   </TextField>
                 </Grid>
                 <Grid item xs={12} sm={4}>
@@ -303,22 +303,22 @@ export default function IncidentForm() {
                 {incidentTypeOptions.map(typ => (
                   <Grid item key={typ.en}>
                     <Button
-                      variant={selectedTypes.includes(typ[lang]) ? 'contained' : 'outlined'}
+                      variant={selectedTypes.includes(typ.en) ? 'contained' : 'outlined'}
                       size="small"
-                      onClick={() => handleTypeToggle(typ[lang])}
+                      onClick={() => handleTypeToggle(typ.en)}
                       sx={{
                         borderRadius: 3,
                         textTransform: 'none',
                         fontWeight: 600,
                         px: 2,
-                        ...(selectedTypes.includes(typ[lang]) ? {
+                        ...(selectedTypes.includes(typ.en) ? {
                           background: 'linear-gradient(135deg, #0f2b5e 0%, #1a3f7a 100%)',
                         } : {
                           borderColor: '#0f2b5e30', color: '#0f2b5e',
                         }),
                       }}
                     >
-                      {typ[lang]}
+                      {typ.en}
                     </Button>
                   </Grid>
                 ))}
@@ -495,7 +495,7 @@ export default function IncidentForm() {
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={4}>
                       <TextField select label={t('field.role')} value={s.role || ''} onChange={e => handleStaffChange(i, 'role', e.target.value)}>
-                        {staffRoles.map(r => <MenuItem key={r.en} value={r[lang]}>{r[lang]}</MenuItem>)}
+                        {staffRoles.map(r => <MenuItem key={r.en} value={r.en}>{r.en}</MenuItem>)}
                       </TextField>
                     </Grid>
                     <Grid item xs={12} sm={4}><TextField label={t('field.name')} value={s.name || ''} onChange={e => handleStaffChange(i, 'name', e.target.value)} /></Grid>
