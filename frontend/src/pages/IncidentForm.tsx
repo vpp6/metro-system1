@@ -10,7 +10,7 @@ import { incidentsApi, IncidentCreate } from '../api/client';
 import { useLang } from '../context/LanguageContext';
 import {
   shifts, locations, discoverers, incidentTypeOptions,
-  staffRoles, operationModes, blueLineStations
+  staffRoles, operationModes, stations
 } from '../context/translations';
 
 const emptyForm: IncidentCreate = {
@@ -145,7 +145,7 @@ export default function IncidentForm() {
               </Grid>
               <Grid item xs={12} sm={4}>
                 <TextField select label={t('form.station')} value={form.station || ''} onChange={e => update('station', e.target.value)}>
-                  {blueLineStations.map(s => <MenuItem key={s.en} value={s[lang]}>{s[lang]}</MenuItem>)}
+                  {stations.map(s => <MenuItem key={s.en} value={s[lang]}>{s[lang]}</MenuItem>)}
                 </TextField>
               </Grid>
               <Grid item xs={12} sm={4}>

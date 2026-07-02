@@ -208,7 +208,8 @@ export const translations = {
 
 export type TranslationKey = keyof typeof translations;
 
-export const blueLineStations = [
+export const stations = [
+  // Blue Line
   { ar: 'البنك الأول - ساب', en: 'First Saudi Bank (SAB)' },
   { ar: 'د. سليمان الحبيب', en: 'Dr. Suleiman Al-Habib' },
   { ar: 'المركز المالي', en: 'Financial Center' },
@@ -234,6 +235,22 @@ export const blueLineStations = [
   { ar: 'مركز النقل العام', en: 'Public Transport Center' },
   { ar: 'العزيزية', en: 'Al-Azizia' },
   { ar: 'الدار البيضاء', en: 'Dar Al-Bayda' },
+  // Red Line
+  { ar: 'جامعة الملك سعود', en: 'King Saud University' },
+  { ar: 'واحة الملك سلمان', en: 'King Salman Oasis' },
+  { ar: 'المدينة التقنية', en: 'Techno Valley' },
+  { ar: 'التخصصي', en: 'Al-Takhassusi' },
+  { ar: 'إس تي سي (مترو الرياض)', en: 'STC (Riyadh Metro)' },
+  { ar: 'الورود', en: 'Al-Wurud' },
+  { ar: 'طريق الملك عبد العزيز', en: 'King Abdulaziz Road' },
+  { ar: 'وزارة التعليم', en: 'Ministry of Education' },
+  { ar: 'النزهة', en: 'Al-Nuzhah' },
+  { ar: 'مركز الرياض للمعارض', en: 'Riyadh Exhibition Center' },
+  { ar: 'طريق خالد بن الوليد', en: 'Khalid Bin Al-Waleed Road' },
+  { ar: 'حي الحمراء', en: 'Al-Hamra District' },
+  { ar: 'حي الخليج', en: 'Al-Khaleej District' },
+  { ar: 'إشبيلية', en: 'Ishbiliyah' },
+  { ar: 'استاد الملك فهد الدولي', en: 'King Fahd International Stadium' },
 ];
 
 export const shifts = [

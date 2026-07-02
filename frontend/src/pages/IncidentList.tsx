@@ -13,7 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { incidentsApi, Incident } from '../api/client';
 import { useLang } from '../context/LanguageContext';
-import { shifts, blueLineStations } from '../context/translations';
+import { shifts, stations } from '../context/translations';
 
 export default function IncidentList() {
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ export default function IncidentList() {
     window.open(url, '_blank');
   };
 
-  const stationList = [{ ar: '', en: '' }, ...blueLineStations];
+   const stationList = [{ ar: '', en: '' }, ...stations];
   const shiftList = [{ ar: '', en: '' }, ...shifts];
 
   return (
