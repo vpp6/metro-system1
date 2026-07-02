@@ -214,9 +214,9 @@ export default function IncidentForm() {
                   <TextField select label={t('form.station')} value={form.station || ''} onChange={e => update('station', e.target.value)}>
                     {stations.map((s, i) => (
                       <MenuItem key={s.en + i} value={s[lang]}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                           <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: (s as any).line === 'red' ? '#ef4444' : '#0f2b5e', flexShrink: 0 }} />
-                          {s[lang]}
+                          <Typography variant="body2">{s[lang]}</Typography>
                         </Box>
                       </MenuItem>
                     ))}

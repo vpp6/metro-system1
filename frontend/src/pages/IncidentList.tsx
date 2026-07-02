@@ -108,12 +108,10 @@ export default function IncidentList() {
               SelectProps={{ displayEmpty: true }}>
               {stationList.map((s, i) => (
                 <MenuItem key={s.en + i} value={s[lang]}>
-                  {s.en ? (
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: (s as any).line === 'red' ? '#ef4444' : '#0f2b5e', flexShrink: 0 }} />
-                      {s[lang]}
-                    </Box>
-                  ) : s[lang] || t('incidents.all')}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                    <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: s.en ? ((s as any).line === 'red' ? '#ef4444' : '#0f2b5e') : 'transparent', flexShrink: 0 }} />
+                    <Typography variant="body2">{s[lang] || t('incidents.all')}</Typography>
+                  </Box>
                 </MenuItem>
               ))}
             </TextField>
@@ -122,8 +120,10 @@ export default function IncidentList() {
             <TextField select label={t('form.shift')} value={filterShift}
               onChange={e => setFilterShift(e.target.value)}
               SelectProps={{ displayEmpty: true }}>
-              {shiftList.map(s => (
-                <MenuItem key={s.en} value={s[lang]}>{s[lang] || t('incidents.all')}</MenuItem>
+              {shiftList.map((s, i) => (
+                <MenuItem key={s.en + i} value={s[lang]}>
+                  <Typography variant="body2">{s[lang] || t('incidents.all')}</Typography>
+                </MenuItem>
               ))}
             </TextField>
           </Grid>
