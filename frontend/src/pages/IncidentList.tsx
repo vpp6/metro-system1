@@ -14,7 +14,7 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { incidentsApi, Incident } from '../api/client';
-import { useLang } from '../context/LanguageContext';
+import { useLang, formatLangDate, formatLangTime } from '../context/LanguageContext';
 import { shifts, stations } from '../context/translations';
 
 const shiftChip = (shift?: string) => {
@@ -169,9 +169,9 @@ export default function IncidentList() {
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body2">{inc.date}</Typography>
+                    <Typography variant="body2">{formatLangDate(inc.date, lang)}</Typography>
                   </TableCell>
-                  <TableCell>{inc.time}</TableCell>
+                  <TableCell>{formatLangTime(inc.time, lang)}</TableCell>
                   <TableCell>
                     <Chip
                       label={shiftChip(inc.shift).label}

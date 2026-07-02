@@ -17,7 +17,7 @@ import EvStationIcon from '@mui/icons-material/EvStation';
 import BadgeIcon from '@mui/icons-material/Badge';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import { incidentsApi, Incident } from '../api/client';
-import { useLang } from '../context/LanguageContext';
+import { useLang, formatLangDate, formatLangTime } from '../context/LanguageContext';
 
 function Field({ label, value }: { label: string; value?: string | number | null }) {
   return (
@@ -60,7 +60,7 @@ function Section({ title, icon, children }: { title: string; icon: React.ReactNo
 export default function IncidentDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [incident, setIncident] = useState<Incident | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -126,11 +126,11 @@ export default function IncidentDetail() {
       <Section title={t('detail.generalInfo')} icon={<InfoIcon sx={{ fontSize: 18 }} />}>
         <Grid container spacing={2}>
           <Field label={t('table.incidentNumber')} value={i.incident_number} />
-          <Field label={t('table.date')} value={i.date} />
+          <Field label={t('table.date')} value={formatLangDate(i.date, lang)} />
           <Field label={t('field.createdByName')} value={i.created_by_name} />
           <Field label={t('field.createdByEmployeeId')} value={i.created_by_employee_id} />
           <Field label={t('form.day')} value={i.day} />
-          <Field label={t('table.time')} value={i.time} />
+          <Field label={t('table.time')} value={formatLangTime(i.time, lang)} />
           <Field label={t('table.shift')} value={i.shift} />
           <Field label={t('table.station')} value={i.station} />
           <Field label={t('form.location')} value={i.location} />
