@@ -24,6 +24,8 @@ class Incident(Base):
     track = Column(String(50))
     equipment_room = Column(String(50))
     description = Column(Text)
+    created_by_name = Column(String(100))
+    created_by_employee_id = Column(String(50))
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 

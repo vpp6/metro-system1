@@ -14,6 +14,8 @@ import {
 } from '../context/translations';
 
 const emptyForm: IncidentCreate = {
+  created_by_name: '',
+  created_by_employee_id: '',
   date: new Date().toISOString().split('T')[0],
   day: '', time: '', shift: '', station: '', location: '',
   platform: '', concourse: '', street_level: '', track: '', equipment_room: '',
@@ -153,6 +155,14 @@ export default function IncidentForm() {
               </Grid>
               <Grid item xs={12} sm={4}>
                 <TextField label={t('form.platformTrack')} value={form.platform || ''} onChange={e => update('platform', e.target.value)} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField label={t('field.createdByName')} value={form.created_by_name || ''}
+                  onChange={e => update('created_by_name', e.target.value)} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField label={t('field.createdByEmployeeId')} value={form.created_by_employee_id || ''}
+                  onChange={e => update('created_by_employee_id', e.target.value)} />
               </Grid>
               <Grid item xs={12}>
                 <TextField label={t('form.description')} multiline rows={3} value={form.description || ''}

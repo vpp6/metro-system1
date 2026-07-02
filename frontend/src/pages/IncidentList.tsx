@@ -91,6 +91,7 @@ export default function IncidentList() {
                 <TableCell>{t('table.shift')}</TableCell>
                 <TableCell>{t('table.station')}</TableCell>
                 <TableCell>{t('table.type')}</TableCell>
+                <TableCell>{t('field.createdByName')}</TableCell>
                 <TableCell>{t('table.description')}</TableCell>
                 <TableCell align="center">{t('table.actions')}</TableCell>
               </TableRow>
@@ -112,6 +113,7 @@ export default function IncidentList() {
                       <Chip key={t.type_name} label={t.type_name} size="small" variant="outlined" sx={{ mr: 0.5, mb: 0.5 }} />
                     ))}
                   </TableCell>
+                  <TableCell>{inc.created_by_name || '-'}</TableCell>
                   <TableCell>
                     <Typography variant="body2" sx={{
                       maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'
@@ -129,7 +131,7 @@ export default function IncidentList() {
               ))}
               {incidents.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={8} align="center">
+                  <TableCell colSpan={9} align="center">
                     <Typography color="textSecondary" py={4}>{t('incidents.noData')}</Typography>
                   </TableCell>
                 </TableRow>

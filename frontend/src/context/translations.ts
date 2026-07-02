@@ -74,6 +74,8 @@ export const translations = {
   'field.correctiveActions': { ar: 'الإجراءات التصحيحية', en: 'Corrective Actions' },
   'field.lessonsLearned': { ar: 'الدروس المستفادة', en: 'Lessons Learned' },
   'field.equipmentAffected': { ar: 'المعدات المتأثرة', en: 'Equipment Affected' },
+  'field.createdByName': { ar: 'اسم مسجل البيانات', en: 'Recorded By' },
+  'field.createdByEmployeeId': { ar: 'الرقم الوظيفي لمسجل البيانات', en: 'Recorder Employee ID' },
 
   // Form
   'form.editIncident': { ar: 'تعديل الحادث', en: 'Edit Incident' },

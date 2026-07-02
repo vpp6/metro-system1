@@ -80,6 +80,8 @@ export interface ImpactAssessment {
 export interface Incident {
   id: number;
   incident_number: string;
+  created_by_name?: string;
+  created_by_employee_id?: string;
   date?: string;
   day?: string;
   time?: string;
@@ -104,6 +106,8 @@ export interface Incident {
 }
 
 export interface IncidentCreate {
+  created_by_name?: string;
+  created_by_employee_id?: string;
   date?: string;
   day?: string;
   time?: string;

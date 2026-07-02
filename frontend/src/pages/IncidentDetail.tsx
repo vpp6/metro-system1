@@ -73,6 +73,8 @@ export default function IncidentDetail() {
         <Grid container spacing={2}>
           <Field label={t('table.incidentNumber')} value={i.incident_number} />
           <Field label={t('table.date')} value={i.date} />
+          <Field label={t('field.createdByName')} value={i.created_by_name} />
+          <Field label={t('field.createdByEmployeeId')} value={i.created_by_employee_id} />
           <Field label={t('form.day')} value={i.day} />
           <Field label={t('table.time')} value={i.time} />
           <Field label={t('table.shift')} value={i.shift} />

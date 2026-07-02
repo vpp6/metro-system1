@@ -242,6 +242,8 @@ class ImpactAssessmentResponse(BaseModel):
 
 # Main Incident Schemas
 class IncidentBase(BaseModel):
+    created_by_name: Optional[str] = None
+    created_by_employee_id: Optional[str] = None
     date: Optional[str] = None
     day: Optional[str] = None
     time: Optional[str] = None
@@ -284,6 +286,8 @@ class IncidentListResponse(BaseModel):
     shift: Optional[str] = None
     station: Optional[str] = None
     description: Optional[str] = None
+    created_by_name: Optional[str] = None
+    created_by_employee_id: Optional[str] = None
     incident_types: Optional[List[IncidentTypeResponse]] = None
     date: Any = None
     time: Any = None
@@ -299,6 +303,8 @@ class IncidentDetailResponse(BaseModel):
 
     id: int
     incident_number: str
+    created_by_name: Optional[str] = None
+    created_by_employee_id: Optional[str] = None
     day: Optional[str] = None
     shift: Optional[str] = None
     station: Optional[str] = None
