@@ -4,6 +4,7 @@ export const translations = {
   // Layout
   'app.title': { ar: 'نظام إدارة عمليات محطات المترو الذكي', en: 'Smart Metro Station Operations Management System' },
   'app.shortTitle': { ar: 'نظام المترو الذكي', en: 'Smart Metro System' },
+  'app.subtitle': { ar: 'نظام إدارة الحوادث والعمليات', en: 'Incident & Operations Management' },
   'nav.dashboard': { ar: 'لوحة المؤشرات', en: 'Dashboard' },
   'nav.incidents': { ar: 'جميع الحوادث', en: 'All Incidents' },
   'nav.newIncident': { ar: 'حادث جديد', en: 'New Incident' },
@@ -24,6 +25,7 @@ export const translations = {
 
   // Incident List
   'incidents.title': { ar: 'إدارة الحوادث', en: 'Incident Management' },
+  'incidents.search': { ar: 'بحث برقم البلاغ أو الوصف …', en: 'Search by incident # or description …' },
   'incidents.new': { ar: 'حادث جديد', en: 'New Incident' },
   'incidents.deleteConfirm': { ar: 'هل أنت متأكد من حذف هذا الحادث؟', en: 'Are you sure you want to delete this incident?' },
   'incidents.noData': { ar: 'لا توجد حوادث مسجلة', en: 'No incidents recorded' },
@@ -41,6 +43,7 @@ export const translations = {
   'table.actions': { ar: 'إجراءات', en: 'Actions' },
 
   // Incident Detail
+  'detail.view': { ar: 'عرض', en: 'View' },
   'detail.notFound': { ar: 'الحادث غير موجود', en: 'Incident not found' },
   'detail.back': { ar: 'رجوع', en: 'Back' },
   'detail.incident': { ar: 'الحادث', en: 'Incident' },
@@ -137,6 +140,8 @@ export const translations = {
   'form.incidentStatus': { ar: 'حالة الحادث', en: 'Incident Status' },
   'form.saving': { ar: 'جاري الحفظ...', en: 'Saving...' },
   'form.update': { ar: 'تحديث الحادث', en: 'Update Incident' },
+  'form.previous': { ar: 'السابق', en: 'Previous' },
+  'form.next': { ar: 'التالي', en: 'Next' },
   'form.register': { ar: 'تسجيل الحادث', en: 'Register Incident' },
   'form.cancel': { ar: 'إلغاء', en: 'Cancel' },
   'form.loadError': { ar: 'فشل تحميل بيانات الحادث', en: 'Failed to load incident data' },
