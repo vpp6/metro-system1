@@ -107,7 +107,14 @@ export default function IncidentList() {
               onChange={e => setFilterStation(e.target.value)}
               SelectProps={{ displayEmpty: true }}>
               {stationList.map((s, i) => (
-                <MenuItem key={s.en + i} value={s[lang]}>{s[lang] || t('incidents.all')}</MenuItem>
+                <MenuItem key={s.en + i} value={s[lang]}>
+                  {s.en ? (
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: (s as any).line === 'red' ? '#ef4444' : '#0f2b5e', flexShrink: 0 }} />
+                      {s[lang]}
+                    </Box>
+                  ) : s[lang] || t('incidents.all')}
+                </MenuItem>
               ))}
             </TextField>
           </Grid>
