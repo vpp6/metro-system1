@@ -212,7 +212,7 @@ export default function IncidentForm() {
                 </Grid>
                 <Grid item xs={12} sm={4}>
                   <TextField select label={t('form.station')} value={form.station || ''} onChange={e => update('station', e.target.value)}>
-                    {stations.map(s => <MenuItem key={s.en} value={s[lang]}>{s[lang]}</MenuItem>)}
+                    {stations.map((s, i) => <MenuItem key={s.en + i} value={s[lang]}>{s[lang]}</MenuItem>)}
                   </TextField>
                 </Grid>
                 <Grid item xs={12} sm={4}>

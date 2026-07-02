@@ -106,8 +106,8 @@ export default function IncidentList() {
             <TextField select label={t('form.station')} value={filterStation}
               onChange={e => setFilterStation(e.target.value)}
               SelectProps={{ displayEmpty: true }}>
-              {stationList.map(s => (
-                <MenuItem key={s.en} value={s[lang]}>{s[lang] || t('incidents.all')}</MenuItem>
+              {stationList.map((s, i) => (
+                <MenuItem key={s.en + i} value={s[lang]}>{s[lang] || t('incidents.all')}</MenuItem>
               ))}
             </TextField>
           </Grid>
