@@ -194,24 +194,11 @@ export default function IncidentForm() {
                   <TextField label={t('field.createdByEmployeeId')} value={form.created_by_employee_id || ''}
                     onChange={e => update('created_by_employee_id', e.target.value)} />
                 </Grid>
-                <Grid item xs={12} sm={3}>
-                  <TextField label={t('form.date')} type="date" value={form.date || ''}
-                    onChange={e => update('date', e.target.value)} InputLabelProps={{ shrink: true }} />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <TextField label={t('form.day')} value={form.day || ''} onChange={e => update('day', e.target.value)} />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <TextField label={t('form.time')} type="time" value={form.time || ''}
-                    onChange={e => update('time', e.target.value)} InputLabelProps={{ shrink: true }} />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <TextField select label={t('form.shift')} value={form.shift || ''} onChange={e => update('shift', e.target.value)}>
-                    {shifts.map(s => <MenuItem key={s.en} value={s[lang]}>{s[lang]}</MenuItem>)}
-                  </TextField>
-                </Grid>
                 <Grid item xs={12} sm={4}>
-                  <TextField select label={t('form.station')} value={form.station || ''} onChange={e => update('station', e.target.value)}>
+                  <Typography variant="caption" fontWeight={600} sx={{ color: 'text.secondary', mb: 0.5, display: 'block' }}>
+                    {t('form.station')}
+                  </Typography>
+                  <TextField select value={form.station || ''} onChange={e => update('station', e.target.value)}>
                     {stations.map((s, i) => (
                       <MenuItem key={s.en + i} value={s[lang]}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -221,6 +208,25 @@ export default function IncidentForm() {
                       </MenuItem>
                     ))}
                   </TextField>
+                </Grid>
+                <Grid item xs={12} sm={2}>
+                  <Typography variant="caption" fontWeight={600} sx={{ color: 'text.secondary', mb: 0.5, display: 'block' }}>
+                    {t('form.shift')}
+                  </Typography>
+                  <TextField select value={form.shift || ''} onChange={e => update('shift', e.target.value)}>
+                    {shifts.map(s => <MenuItem key={s.en} value={s[lang]}>{s[lang]}</MenuItem>)}
+                  </TextField>
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <TextField label={t('form.date')} type="date" value={form.date || ''}
+                    onChange={e => update('date', e.target.value)} InputLabelProps={{ shrink: true }} />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <TextField label={t('form.day')} value={form.day || ''} onChange={e => update('day', e.target.value)} />
+                </Grid>
+                <Grid item xs={12} sm={2}>
+                  <TextField label={t('form.time')} type="time" value={form.time || ''}
+                    onChange={e => update('time', e.target.value)} InputLabelProps={{ shrink: true }} />
                 </Grid>
                 <Grid item xs={12} sm={4}>
                   <TextField select label={t('form.location')} value={form.location || ''} onChange={e => update('location', e.target.value)}>

@@ -103,7 +103,10 @@ export default function IncidentList() {
             />
           </Grid>
           <Grid item xs={12} sm={4}>
-            <TextField select label={t('form.station')} value={filterStation}
+            <Typography variant="caption" fontWeight={600} sx={{ color: 'text.secondary', mb: 0.5, display: 'block' }}>
+              {t('form.station')}
+            </Typography>
+            <TextField select value={filterStation}
               onChange={e => setFilterStation(e.target.value)}
               SelectProps={{ displayEmpty: true }}>
               {stationList.map((s, i) => (
@@ -117,7 +120,10 @@ export default function IncidentList() {
             </TextField>
           </Grid>
           <Grid item xs={12} sm={4}>
-            <TextField select label={t('form.shift')} value={filterShift}
+            <Typography variant="caption" fontWeight={600} sx={{ color: 'text.secondary', mb: 0.5, display: 'block' }}>
+              {t('form.shift')}
+            </Typography>
+            <TextField select value={filterShift}
               onChange={e => setFilterShift(e.target.value)}
               SelectProps={{ displayEmpty: true }}>
               {shiftList.map((s, i) => (
